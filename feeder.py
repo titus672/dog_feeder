@@ -4,8 +4,8 @@ import time
 
 class DogFeeder:
     def __init__(self, enable_pin, pulse_pin):
-        self.enable_pin = OutputDevice(enable_pin, False, False)
-        self.pulse_pin = OutputDevice(pulse_pin, False, False)
+        self.enable_pin = OutputDevice(enable_pin, active_high=True, initial_value=True)
+        self.pulse_pin = OutputDevice(pulse_pin, active_high=True)
         self.status = 0
     # function to test stepper motor, accepts a number of steps and a delay in milliseconds
 
@@ -14,7 +14,7 @@ class DogFeeder:
             self.status = 1
             print("Error, steps must be a positive integer")
         else:
-            self.enable_pin.on()
+            self.enable_pin.off()
             d = delay / 1000.0
             while steps > 0:
                 self.pulse_pin.on()
@@ -22,3 +22,4 @@ class DogFeeder:
                 self.pulse_pin.off()
                 print("Steps: ", steps)
                 steps -= 1
+            self.enable_pin.on()
