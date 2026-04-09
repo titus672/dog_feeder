@@ -3,9 +3,10 @@ import time
 
 
 class DogFeeder:
-    def __init__(self, enable_pin, pulse_pin):
+    def __init__(self, enable_pin, pulse_pin, dir_pin):
         self.enable_pin = OutputDevice(enable_pin, active_high=True, initial_value=True)
         self.pulse_pin = OutputDevice(pulse_pin, active_high=True)
+        self.dir_pin = OutputDevice(dir_pin, active_high=True)
         self.status = 0
     # function to test stepper motor, accepts a number of steps and a delay in milliseconds
 

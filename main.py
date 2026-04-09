@@ -6,7 +6,8 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
 app = FastAPI()
-feeder = DogFeeder(17, 4)
+feeder = DogFeeder(17, 4, 27)
+feeder.dir_pin.on()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
