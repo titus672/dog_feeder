@@ -13,3 +13,29 @@ async function submitData() {
   const data = await response.json();
 }
 
+async function reverseStepper() {
+  const response = await fetch('reverse_stepper', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+
+  const data = await response.json();
+}
+
+async function refreshStatus() {
+  const statusDiv = document.createElement("div");
+  try {
+    const response = await fetch('/status');
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    
+    const status = await response.json();
+    console.log(status)
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+

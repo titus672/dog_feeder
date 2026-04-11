@@ -34,6 +34,12 @@ async def move_stepper(input: MovementInput):
     return {"Message": f"Moved stepper {input.steps} steps"}
 
 
+@app.post("/reverse_stepper")
+async def reverse_stepper():
+    feeder.dir_pin.toggle()
+    return {"message": "toggled direction"}
+
+
 def main():
     feeder.drive_stepper(3200, 1)
 
